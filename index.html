@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>時間割アラーム</title>
+</head>
+<body>
+    <div id="clock"></div>
+    <div id="menu">
+        <button id="customSettingsBtn"><span>&#9776;</span></button>
+    </div>
+    <div id="customSettingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="dayTitle">水曜日の設定</h2>
+            <label for="weekdaySelect">曜日:</label>
+            <select id="weekdaySelect">
+                <option value="水曜日">水曜日</option>
+                <option value="木曜日">木曜日</option>
+                <option value="金曜日">金曜日</option>
+                <option value="土曜日">土曜日</option>
+                <option value="日曜日">日曜日</option>
+            </select>
+            <div id="scheduleContainer"></div>
+            <button id="saveCustomSettingsBtn">保存</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
