@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // 各アラームの音楽ファイルのパス
         const alarmPath = {
-            "startAlarm": "path/to/start-alarm.mp3",
-            "midAlarm": "path/to/mid-alarm.mp3",
-            "endAlarm": "path/to/end-alarm.mp3",
-            "finalAlarm": "path/to/final-alarm.mp3"
+            "startAlarm": "sounds/start-alarm.mp3",
+            "midAlarm": "sounds/mid-alarm.mp3",
+            "endAlarm": "sounds/end-alarm.mp3",
+            "finalAlarm": "sounds/final-alarm.mp3"
         };
 
         // アラームの再生
