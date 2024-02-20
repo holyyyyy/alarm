@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>時間割アラーム</title>
 </head>
 <body>
@@ -27,6 +28,19 @@
             <button id="saveCustomSettingsBtn">保存</button>
         </div>
     </div>
+    <audio id="startAlarm">
+        <source src="/sounds/start-alarm.mp3" />
+    </audio>
+    <audio id="midAlarm">
+        <source src="/sounds/start-alarm.mp3" />
+    </audio>
+    <audio id="endAlarm">
+        <source src="/sounds/start-alarm.mp3" />
+    </audio>
+    <audio id="finalAlarm">
+        <source src="/sounds/start-alarm.mp3" />
+    </audio>
+    <button id="playAlarmSound">アラームを許可する</button>
     <script src="script.js"></script>
 </body>
 </html>
