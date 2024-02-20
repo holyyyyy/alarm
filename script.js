@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // アラームの再生
         const alarmTime = calculateAlarmTime(startTime, alarmType); // アラームを鳴らす時刻を計算
-        scheduleAlarm(alarmTime, alarmPath[alarmType]); // アラームをセット
+        scheduleAlarm(alarmTime, alarmType); // アラームをセット
     }
 
     // アラームを鳴らす時刻を計算する関数
@@ -46,20 +46,48 @@ document.addEventListener("DOMContentLoaded", function() {
         const currentHour = now.getHours();
         const currentMinute = now.getMinutes();
         const minutesUntilAlarm = timeInMinutes - ((currentHour * 60) + currentMinute); // アラームまでの残り時間（分）
+        console.log(minutesUntilAlarm);
 
         // 残り時間が負の場合は次の日の同時刻をセット
         const millisecondsUntilAlarm = minutesUntilAlarm <= 0 ? (24 * 60 * 60 * 1000) + (minutesUntilAlarm * 60 * 1000) : minutesUntilAlarm * 60 * 1000;
-
+        // const millisecondsUntilAlarm = 100;
+        console.log("until:"+millisecondsUntilAlarm);
         setTimeout(() => {
             playAlarm(filePath); // アラームを再生
         }, millisecondsUntilAlarm);
     }
+    function playAlarm(audioPath) {
+        console.log(audioPath);
+        const audio = document.getElementById(audioPath);
+        playAudio();
+        async function playAudio(){
+            try {
+                await audio.play();
+              } catch(err) {
+                console.log(err);
+              }
+        }
+    }
+    document.getElementById("playAlarmSound").addEventListener("click", function() {
+        prepareSound("startAlarm");
+        prepareSound("midAlarm");
+        prepareSound("endAlarm");
+        prepareSound("finalAlarm");
+        document.getElementById("playAlarmSound").remove();
+    });
+    function prepareSound(type) {
+        const audio = document.getElementById(type);
+        console.log(audio);
+        audio.play();
+        audio.pause();
+        audio.volume = 1;
+      }
 
     // 定期的にアラームをチェック
     setInterval(function () {
         const now = new Date();
-        // const dayOfWeek = now.toLocaleDateString('en-US', { weekday: 'short' }); // 現在の曜日を取得
-        const dayOfWeek = 'Wed';
+        const dayOfWeek = now.toLocaleDateString('en-US', { weekday: 'short' }); // 現在の曜日を取得
+        // const dayOfWeek = 'Wed';
         const alarmSettingsKey = `alarmSettings_${dayOfWeek}`; // 曜日に対応するlocalStorageのキー
         const savedSettings = localStorage.getItem(alarmSettingsKey); // localStorageから設定を読み込む
 
@@ -72,38 +100,25 @@ document.addEventListener("DOMContentLoaded", function() {
             const timeSlots = getTimeSlots(dayOfWeek);
             const timeSlots_ = getTimeSlots_(dayOfWeek);
 
-            console.log(settings);
+            // console.log(settings);
 
             Object.keys(settings).forEach((key,index) => {
                 const timeArray = key.split('_');
-                console.log(timeArray);
+                // console.log(timeArray);
                 const correspondingTimeSlot = timeSlots_[timeArray[0]-1];//何コマ目
-                console.log(correspondingTimeSlot);
+                // console.log(correspondingTimeSlot);
                 if(correspondingTimeSlot){// 要素の中身があるなら
                     const isTimeEnabled = settings[key];
-                    console.log("istrue?:"+isTimeEnabled);
+                    // console.log("istrue?:"+isTimeEnabled);
                     const startTime = correspondingTimeSlot.hour * 60 + correspondingTimeSlot.minute;
-                    if(isTimeEnabled){ //チェックボックスがtrueなら
-                        setAlarm(timeArray[1],startTime);// アラームをセット
+                    if(isTimeEnabled){ //設定のチェックボックスがtrueの時だけ
+                        setAlarm(timeArray[1],startTime);// trueの時刻にアラームをセットする
                     }
                 }
                 
             });
-            // アラームのチェック
-            // const checkedAlarms = ["startAlarm", "midAlarm", "endAlarm", "finalAlarm"];
-            // checkedAlarms.forEach((alarmId, index) => {
-            //     const correspondingTimeSlot = timeSlots_[index]; // 対応する時間帯を取得
-            //     console.log(correspondingTimeSlot);
-            //     for(let i = 0; i < timeSlots_.length; i++) {
-            //         console.log(isCurrentTimeWithinSlot(correspondingTimeSlot, hour, minute));
-            //         if (correspondingTimeSlot && settings[`${i + 1}_${alarmId}`] && isCurrentTimeWithinSlot(correspondingTimeSlot, hour, minute)) {
-            //             setAlarm(alarmId, correspondingTimeSlot.hour * 60 + correspondingTimeSlot.minute); // アラームをセット
-            //         }
-            //     }
-            // });
-
         }
-    }, 6000); // 1分ごとにチェック
+    }, 60000); // 1分ごとにチェック
 
     // 各曜日ごとの時間帯を取得する関数
     function getTimeSlots_(day) {
@@ -136,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 指定の時刻帯に現在の時刻が含まれるかを判定する関数
     function isCurrentTimeWithinSlot(timeSlot, currentHour, currentMinute) {
         const { hour, minute } = timeSlot;
-        console.log(hour, minute)
+        // console.log(hour, minute)
         return currentHour === hour && currentMinute >= minute && currentMinute < minute + 50; // 50分までの範囲
     }
 
