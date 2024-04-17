@@ -21,6 +21,8 @@ body {
     right: 10px;
 }
 
+
+/* ここ消す② */
 button#customSettingsBtn {
     display: block;
     border: none;
@@ -40,6 +42,27 @@ button#customSettingsBtn span {
     left: 0.4vw;
     color: #ed6d1e;
 }
+/* ここ②と置き換える */
+button#openBtn {
+    display: block;
+    border: none;
+    border-radius: 3px;
+    width: 5vw;
+    height: 5vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #fff;
+}
+button#openBtn span {
+    position: absolute;
+    line-height: 4vw;
+    font-size: 5vw;
+    top: 0px;
+    left: 0.4vw;
+    color: #ed6d1e;
+}
+
 
 /* Modal styles */
 .modal {
@@ -78,7 +101,17 @@ button#customSettingsBtn span {
     cursor: pointer;
 }
 
+/* ここ消す③ */
 select#weekdaySelect {
+    padding: 0.3rem;
+    border: 1px solid #ed6d1e;
+    border-radius: 3px;
+    background: #ed6d1e;
+    color: #fff;
+    font-weight: bold;
+}
+/* ③と置き換える */
+select#classdaySelect {
     padding: 0.3rem;
     border: 1px solid #ed6d1e;
     border-radius: 3px;
@@ -99,6 +132,8 @@ button#saveCustomSettingsBtn {
 #scheduleContainer label {
     margin-right: 1rem;
 }
+
+/* ここあとで消す① */
 button#playAlarmSound {
     display: block;
     width: 50vw;
@@ -113,5 +148,22 @@ button#playAlarmSound {
     border: none;
 }
 button#playAlarmSound:hover {
+    background: #666;
+}
+/* ここ①と置き換える */
+button#allowAlarm {
+    display: block;
+    width: 50vw;
+    height: 40vh;
+    position: fixed;
+    top: 30vh;
+    left: 25vw;
+    border-radius: 10rem;
+    font-size: 5vw;
+    background: #333;
+    color: #FFF;
+    border: none;
+}
+button#allowAlarm:hover {
     background: #666;
 }
