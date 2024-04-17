@@ -10,14 +10,14 @@
 <body>
     <div id="clock"></div>
     <div id="menu">
-        <button id="customSettingsBtn"><span>&#9776;</span></button>
+        <button id="openBtn"><span>&#9776;</span></button>
     </div>
     <div id="customSettingsModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 id="dayTitle">水曜日の設定</h2>
-            <label for="weekdaySelect">曜日:</label>
-            <select id="weekdaySelect">
+            <label for="classdaySelect">曜日:</label>
+            <select id="classdaySelect">
                 <option value="Wed">水曜日</option>
                 <option value="Thu">木曜日</option>
                 <option value="Fri">金曜日</option>
@@ -25,7 +25,7 @@
                 <option value="Sun">日曜日</option>
             </select>
             <div id="scheduleContainer"></div>
-            <button id="saveCustomSettingsBtn">保存</button>
+            <button id="saveBtn">保存</button>
         </div>
     </div>
     <audio id="startAlarm">
@@ -40,7 +40,7 @@
     <audio id="finalAlarm">
         <source src="sounds/final-alarm.mp3" />
     </audio>
-    <button id="playAlarmSound">アラームを許可する</button>
-    <script src="script.js"></script>
+    <button id="allowAlarm">アラームを許可する</button>
+    <script src="test.js"></script>
 </body>
 </html>
